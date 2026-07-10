@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Management System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f2f2f2;
+            text-align: center;
+        }
+        .container {
+            width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px gray;
+        }
+        input {
+            width: 90%;
+            padding: 10px;
+            margin: 8px;
+        }
+        button {
+            padding: 10px 20px;
+            background: blue;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        #output {
+            margin-top: 20px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Student Management System</h2>
+
+    <input type="text" id="name" placeholder="Enter Student Name">
+    <input type="text" id="roll" placeholder="Enter Roll Number">
+    <input type="text" id="branch" placeholder="Enter Branch">
+
+    <button onclick="addStudent()">Add Student</button>
+
+    <div id="output"></div>
+</div>
+
+<script>
+let students = [];
+
+function addStudent() {
+    let name = document.getElementById("name").value;
+    let roll = document.getElementById("roll").value;
+    let branch = document.getElementById("branch").value;
+
+    if(name==="" || roll==="" || branch===""){
+        alert("Please fill all fields");
+        return;
+    }
+
+    students.push({
+        name: name,
+        roll: roll,
+        branch: branch
+    });
+
+    displayStudents();
+
+    document.getElementById("name").value="";
+    document.getElementById("roll").value="";
+    document.getElementById("branch").value="";
+}
+
+function displayStudents() {
+    let output = "<h3>Student List</h3>";
+
+    students.forEach((s,index)=>{
+        output += "<p>" + (index+1) + ". " + s.name + " | " + s.roll + " | " + s.branch + "</p>";
+    });
+
+    document.getElementById("output").innerHTML = output;
+}
+</script>
+
+</body>
+</html>
